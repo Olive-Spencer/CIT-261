@@ -8,8 +8,12 @@ function loadXMLDoc() {
   var xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var json = JSON.parse(xhttp.responseText);
-      document.getElementById("demo").innerHTML = json;
+        var json = JSON.parse(xhttp.responseText);
+        
+        var color = document.getElementById("color").value;
+        document.getElementById("demo").innerHTML = json[color];
+        
+        }
     }
   };
   xhttp.open("GET", "colors.json", true);
@@ -23,9 +27,10 @@ function loadXMLDoc() {
 <body>
 
 <h1>Using XMLHTTPREQUEST to Consume a JSON Web Service</h1>
-<div id="demo">
+<input type="text" id="color">
 <button type="button" onclick="loadXMLDoc()">Change Content</button>
-</div>
+<p id="demo"></p>
+
 
 
 
