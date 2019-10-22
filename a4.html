@@ -9,7 +9,7 @@ function loadXMLDoc() {
   xhttp.onload = function() {
     if (this.readyState == 4 && this.status == 200) {
       var json = JSON.parse(xhttp.responseText);
-      document.getElementById("out1").innerHTML = json;
+      document.getElementById("demo").innerHTML = json;
     }
   };
   xhttp.open("GET", "colors.json", true);
