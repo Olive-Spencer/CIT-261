@@ -4,23 +4,28 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 <script>
 
-var request = new XMLHttpRequest();
-request.overrideMimeType("application/json");
-request.open('GET', 'https://github.com/corysimmons/colors.json/blob/master/colors.json', true);
-
-request.onload  = function() {
-   var jsonResponse = JSON.parse(request.responseText);
-   document.getElementById("out1").innerHTML = jsonResponse;
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "colors.json", true);
+  xhttp.send();
+}
     
-};
 
-request.send(null);
+
     </script>
 </head>
 <body>
 
 <h1>Using XMLHTTPREQUEST to Consume a JSON Web Service</h1>
-<p id=out></p>
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</div>
 
 
 <ol>
