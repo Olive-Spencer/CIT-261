@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script>
+    function createObj(){
+        var obj = { firstname: "John", middlename: "Jacob", lastname: "Jingle",  location: "North Pole", birthday: "December 25th" };
+        
+        var objJSON = stringify(obj);
+        var obj2 = JSON.parse(objJSON);
+        console.log(obj2);
+        document.getElementById("out2").innerHTML = "This is the JSON parsed back into object 2:<br>" + obj2 + "<br> this should just show [object Object]<br> It is also logged in the console if you wish to inspect.";
+        
+        
+    }
+    function stringify(obj){
+        var objJSON = JSON.stringify(obj);
+        document.getElementById("out1").innerHTML = "This is the JSON stringify string:<br>" + objJSON;
+        return objJSON;
+        
+        
+        
+    }
+    
+    
+    
+    
+    </script>
+</head>
+<body>
+
+<h1>JSON Parse, Stringify</h1>
+
+This button will create a Javascript object and an array and stringify it. It will print the results.<br>
+It will then Parse it back into a javascript object and print<br> 
+The orignal object looks like this:<br>
+{firstname: "John", middlename: "Jacob", lastname: "Jingle",  location: "North Pole", birthday: "December 25th" }
+    
+<input type="button" onclick="createObj()" value="Click"><br>
+    <p id=out1></p><br>
+    <p id=out2></p><br><br>
+
+</body>
+<html>
+

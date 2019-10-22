@@ -13,7 +13,7 @@ html {
   font-family: 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
 }
 body {
-  padding: 1em;
+  padding: .5em;
   margin: 0 auto;
   max-width: 800px;
 }
