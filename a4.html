@@ -11,7 +11,7 @@ function loadXMLDoc() {
         var json = JSON.parse(xhttp.responseText);
         
         var color = document.getElementById("color").value;
-        document.getElementById("demo").innerHTML = json[color];
+        document.getElementById("demo").innerHTML = "The RGB for " + color + "is " +json[color];
         
         
     }
@@ -27,8 +27,9 @@ function loadXMLDoc() {
 <body>
 
 <h1>Using XMLHTTPREQUEST to Consume a JSON Web Service</h1>
+<h2>Enter a color then press the "submit" button to see the RGB for that color. </h2>
 <input type="text" id="color">
-<button type="button" onclick="loadXMLDoc()">Change Content</button>
+<button type="button" onclick="loadXMLDoc()">Submit</button>
 <p id="demo"></p>
 
 
