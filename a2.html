@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script>
+    
+    function object(){
+        
+    function person(first,middle,last,location,birthday){
+        this.first = first;
+        this.middle = middle;
+        this.last = last;
+        this.location = location;
+        this.birthday = birthday;
+        this.fullname = function(){
+            return this.first + " " + this.middle + " " + this.last;
+        }        
+    }
+    
+    var john = new person('John','Jacob','Jingle', 'North Pole', 'December 25th');
+    
+    john.story = john.first + " " + john.last + " was born at the " + john.location + ". <br> He get's lots of presents on " + john.birthday + " because it is his birthday and Christmas. <br>His full name is " + john.fullname();
+        
+        document.getElementById("story").innerHTML = john.story;
+    
+    }
+        
+    
+    
+    
+    
+    </script>
+</head>
+<body>
+
+<h1>Javascript- Object Creation Functions, Inheritance, Properties, Methods, Instantiation</h1>
+
+    <h2> Click this button to create an object</h2>
+    <input type="button" onclick="object()" value="Click"><br>
+    <p id=story></p>
+
+</body>
+<html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+
+<script>
+    
+//this shows the functionality of a basic while loop
+function loops() {
+  var numb = document.getElementById("loopNumb").value;
+  var loopOutput = "";
+
+    while (numb > 0){
+        loopOutput += "<br>" + numb;
+        numb--;
+    }
+        document.getElementById("loopOut").innerHTML=loopOutput;
+    
+}
+
+//this shows the functionality of an if statement
+function con() {
+    var conNumb = document.getElementById("conNumb").value;
+    var conOut = "";
+    
+    if (conNumb%2 == 0){
+        conOut = "The Number is Even";
+    }
+    else{
+        conOut = "The Number is Odd";
+    }
+    document.getElementById("conOut").innerHTML=conOut;
+        
+}
+
+//this shows variables into an array being passed as a parameter to the parameters function.
+function variables(){
+    var number1 = document.getElementById("varNum1").value;
+    var number2 = document.getElementById("varNum2").value;
+    var number3 = document.getElementById("varNum3").value;
+    
+    var arr1 = [number1, number2, number3];
+    arr1 = arr1.sort();
+    parameters(arr1);
+    
+}
+//this shows an array being passed as a parameter
+    function parameters(arr){
+        
+        var text = "";
+        
+        for (x=0; x<arr.length; x++) {
+            text += arr[x] + "<br>";
+        }
+        document.getElementById("parOut").innerHTML=text;
+        
+    }
+//this shows an associative array. It's actually just an object in javascript.
+    function assoArr(){
+        
+        var name1 = document.getElementById("arrName1").value;
+        var food1 = document.getElementById("arrFood1").value;
+        var name2 = document.getElementById("arrName2").value;
+        var food2 = document.getElementById("arrFood2").value;
+        var name3 = document.getElementById("arrName3").value;
+        var food3 = document.getElementById("arrFood3").value;
+        var text = ""
+        var obj = [];
+        obj[name1] = food1;
+        obj[name2] = food2;
+        obj[name3] = food3;
+        
+//this was a straightforward way to demonstrate an associative array. I am using the variable to call the correct association of the array for the favorite food.
+        for (x=1; x<=3; x++){
+            if (x==1){
+                text += name1 + " likes " + obj[name1] + "<br>"; 
+            }
+            else if (x==2){
+                text += name2 + " likes " + obj[name2] + "<br>"; 
+                
+            }
+            else if (x==3){
+                text += name3 + " likes " + obj[name3] + "<br>"; 
+            }
+            
+            
+        }
+        document.getElementById("arrOut").innerHTML=text;
+        
+    }
+
+</script>
+    
+</head>
+<body>
+
+<h1>Javascript-Loops, Conditional Statements, Functions, Variables, Parameters, Arrays</h1>
+<h2>Loops</h2>
+
+  Enter a number (between 1 and 100):
+  <input type="number" min="1" max="100" id="loopNumb"><br>
+  <input type="button" onclick="loops()" value="Click"> <br>
+  <p id="loopOut"></p>
+  <br><br>
+    <h2>Conditional Statements</h2><br>
+    Enter a number (between 1 and 100):
+    <input type="number" min="1" max="100" id="conNumb"><br>
+    <input type="button" onclick="con()" value="Click"> <br>
+    <p id=conOut></p><br><br>
+    
+<h2> Variables and Parameters and Arrays/Associative Arrays</h2>
+    Enter 3 numbers (between 1 and 100):<br>
+    <input type="number" min="1" max="100" id="varNum1"><br>
+    <input type="number" min="1" max="100" id="varNum2"><br>
+    <input type="number" min="1" max="100" id="varNum3"><br>
+    <input type="button" onclick="variables()" value="click"> <br>
+    <p id="parOut"></p><br><br>
+<h2>Associative Arrays</h2>
+    Enter 3 names and their favorite foods:<br>
+    <input type="text" id="arrName1">
+    <input type="text" id="arrFood1"><br>
+    <input type="text" id="arrName2">
+    <input type="text" id="arrFood2"><br>
+    <input type="text" id="arrName3">
+    <input type="text" id="arrFood3"><br>
+    <input type="button" onclick="assoArr()" value="submit"><br>
+    <p id="arrOut"></p>
+    
+    
+
+    
+
+</body>
+<html>
