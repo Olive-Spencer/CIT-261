@@ -4,14 +4,14 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 <script>
 
-function loadXMLDoc() {
+function load() {
   var xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
     if (this.readyState == 4 && this.status == 200) {
-        var json = JSON.parse(xhttp.responseText);
+        var jsonP = JSON.parse(xhttp.responseText);
         
         var color = document.getElementById("color").value;
-        document.getElementById("demo").innerHTML = "The RGB for " + color + " is " +json[color];
+        document.getElementById("demo").innerHTML = "The RGB for " + color + " is " +jsonP[color];
         
         
     }
@@ -29,7 +29,7 @@ function loadXMLDoc() {
 <h1>Using XMLHTTPREQUEST to Consume a JSON Web Service</h1>
 <h2>Enter a color then press the "submit" button to see the RGB for that color. </h2>
 <input type="text" id="color">
-<button type="button" onclick="loadXMLDoc()">Submit</button>
+<button type="button" onclick="load()">Submit</button>
 <p id="demo"></p>
 
 
