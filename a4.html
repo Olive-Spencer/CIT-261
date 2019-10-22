@@ -2,11 +2,25 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="main.css">
+<script>
+
+var request = new XMLHttpRequest();
+request.overrideMimeType("application/json");
+request.open('GET', 'https://github.com/corysimmons/colors.json/blob/master/colors.json', true);
+
+request.onload  = function() {
+   var jsonResponse = JSON.parse(request.responseText);
+   document.getElementById("out1").innerHTML = jsonResponse;
+    
+};
+
+request.send(null);
+    </script>
 </head>
 <body>
 
 <h1>Using XMLHTTPREQUEST to Consume a JSON Web Service</h1>
-<h2>Fall 2019</h2>
+<p id=out></p>
 
 
 <ol>
