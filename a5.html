@@ -2,12 +2,175 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="main.css">
+<script>
+function store(){
+    var first = document.getElementById("first").value;
+    var last = document.getElementById("last").value;
+    var numb = document.getElementById("numb").value;
+    
+    if ((first == "") || (last == "") || (numb == ""))
+    {
+        
+        document.getElementById("error").innerHTML = "Please fill in all fields!";
+    }
+    else
+    {
+        document.getElementById("error").innerHTML = "Updated";
+        simple(first);
+        array(first);
+        aArray(first,last);
+        obj(first,last,numb);
+        load();
+        
+        
+        
+        
+    }
+    
+}
+    function simple(first){
+        localStorage.setItem("simple", first);
+        
+        
+        
+    }
+    
+    function array(first){
+        if (localStorage.getItem("array") != null){
+            var array = JSON.parse(localStorage.getItem("array"));
+            array.push(first);
+            localStorage.setItem("array", JSON.stringify(array));
+        }
+        else {
+            var array = [];
+            array.push(first);
+            localStorage.setItem("array", JSON.stringify(array));
+        }
+        
+        
+        
+        }
+    
+    
+    function aArray(first, last){
+        
+        var array = { first:first, last:last};
+        localStorage.setItem("aarray", JSON.stringify(array));
+        
+        
+        
+        
+    }
+    
+     function objCreate(first, last, numb) {
+        this.firstname = first;
+        this.lastname = last;
+        this.number = numb;
+        
+        
+    }
+    
+    function obj(first, last, numb){
+        
+        var newObject = new objCreate(first,last,numb);
+        localStorage.setItem("object", JSON.stringify(newObject));
+        
+        
+        
+        
+        
+        
+    }
+    
+   
+    
+    function reset() {
+        localStorage.clear();
+        
+        document.getElementById("error").innerHTML = "Data Cleared!"
+        
+        document.getElementById('simple').innerHTML = "";
+        document.getElementById("array").innerHTML = "";
+        document.getElementById("aArray").innerHTML = "";
+        document.getElementById("object").innerHTML = "";
+    }
+
+    function load() { 
+        
+        
+        var outS = localStorage.getItem("simple");
+        
+        if ( outS == null){
+            document.getElementById("error").innerHTML = "Data Has been Cleared. Store Data and try again."
+        }
+        else{
+        document.getElementById('simple').innerHTML = "Saved Data: " + outS;
+        
+        var array = JSON.parse(localStorage.getItem("array"));
+        var outA = "Saved Data: ";
+        for (var x = 0; x <= array.length - 1; x++){
+            if (x < array.length - 1){
+            outA += array[x] + ", ";
+            }
+        
+            else{
+                outA += array[x];
+            }
+        }
+        document.getElementById("array").innerHTML = outA;
+        
+        
+        
+        var aArray = JSON.parse(localStorage.getItem("aarray"));
+        var aaOut = "Saved Associative Array: " + aArray.first + " " + aArray.last; 
+        document.getElementById("aArray").innerHTML = aaOut;
+        
+        
+        
+        var object = JSON.parse(localStorage.getItem("object"));
+        var objOut = "Saved Object: " + object.firstname + " " + object.lastname + " " + object.number;
+        document.getElementById("object").innerHTML = objOut;
+        }
+    
+    }
+    
+    
+
+
+    </script>
 </head>
 <body>
 
 <h1>Local Storage API, Storing and Retreiving Simple Data, Arrays, Associative Arrays, and Objects</h1>
-<h2>Simple Data</h2>
 
+Local storage can store and load simple data. <br>
+Type a word and press store to store and load to display the stored word.<br>
+Enter a first name :<input type="text" id="first"><br>
+Enter a last name : <input type="text" id="last"><br>
+Enter a number: <input type="text" id="numb">
+    <br><p id=error></p><br>    
+    <input type="button" value="Store Data" onclick="store()">
+    <input type="button" value="Load Data" onclick="load()">
+    <input type="button" value="Reset Data" onclick="reset()"> <br>
+    
+<h2>Simple Data</h2>
+After pressing store data and load data, This will display the most recent first name in local storage.<br>
+<p id=simple></p>
+
+<h2>Arrays</h2>
+After pressing store data and load data, This will display a list of all first names stored in local storage. This can be reset by pressing the Reset Data button. <br>
+
+    <p id=array></p>
+    
+<h2>Associative Arrays</h2>
+After pressing store data and load data, If a first and last name was entered, This will display the first and last name together. The first name acts as a key and the last name acts as a value in an associative array. This will reset if you press Reset Data.<br>
+
+<p id=aArray></p>
+    
+<h2>Object</h2>
+After Pressing store data and load data, If all fields are filled, this will display a first name, last name and number. These items are stored in an object. This can be reset by pressing the Reset Data button.<br>
+
+    <p id=object></p>
 
 
 
