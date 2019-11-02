@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="a8.css">
+<script>
+    function playAnimation()
+    {
+        var state = document.getElementById("state").value;
+        if (state == "Play Animation"){
+            document.getElementById("state").value = "Pause Animation";
+            document.getElementById("boxAnimate").style.animationPlayState= "running";
+        }
+        else
+        {
+            document.getElementById("state").value = "Play Animation";
+            document.getElementById("boxAnimate").style.animationPlayState= "paused";
+            
+        }
+    }
+    function reverseAnimation()
+    {
+        var state = document.getElementById("boxAnimate").style.animationDirection;
+                
+        if (state == "reverse")
+            {
+                document.getElementById("boxAnimate").style.animationDirection = "normal";
+            }
+        else 
+            {
+                document.getElementById("boxAnimate").style.animationDirection = "reverse";
+            }
+    }
+    function rotate()
+    {
+        var state = document.getElementById("rotate").value;
+        if (state == "Add Rotation")
+        {
+            document.getElementById("rotate").value = "Stop Rotation";
+            document.getElementById("boxAnimate").style.animationName = "moveRotate";
+        }
+        else
+        {
+            document.getElementById("rotate").value = "Add Rotation";
+            document.getElementById("boxAnimate").style.animationName = "move";    
+        }
+        
+    }
+    
+    
+    </script>
 </head>
 <body>
 
 <h1>Creating CSS3 Transitions and Animations in CSS and triggering them with JavaScript</h1>
 <h2></h2>
+    <input type="button" value="Play Animation" id="state" onclick="playAnimation()">
+    <input type="button" value="Reverse Animation" id="reverse" onclick="reverseAnimation()">
+    <input type="button" value="Add Rotation" id="rotate" onclick="rotate()">
+    <br>
+    <br><div id=boxAnimate class=boxAnimate></div>
 
 
 

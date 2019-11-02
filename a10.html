@@ -3,12 +3,37 @@
 <head>
 <link rel="stylesheet" type="text/css" href="main.css">
 </head>
+<script>
+var img = new Image();
+img.src='picture.jpg'
+
+function canvas() {
+  var canvas = document.getElementById("canvas");
+  var canvasDraw = canvas.getContext("2d");
+  canvasDraw.drawImage(img, 0, 0);
+  
+}
+
+</script>
 <body>
 
 <h1>HTML5 Tags - Video, Audio, and Canvas</h1>
-<h2>Fall 2019</h2>
+<h2>Video</h2>
+"Underwater Video of Sea Turtle"<br>
+<video width="640" height="360" controls>    
+<source src="video.mp4" type="video/mp4">
+</video>
+<br><br>
 
-
+<h2>Audio</h2>
+"Virtutes Instrumenti"<br>
+<audio controls>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+<br><br>
+<h2>Canvas</h2>
+<button onclick="canvas()">Paint Picture on Canvas</button><br><br>
+<canvas id="canvas" width="480" height="480"></canvas>
 
 </body>
 <html>

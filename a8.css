@@ -1,0 +1,91 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: auto;
+}
+html {
+  font-size: 12pt;
+  line-height: 1.4;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', 'Myriad Pro', 'Segoe UI', Myriad, Helvetica, 'Lucida Grande', 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, Arial, sans-serif;
+}
+body {
+  padding: .5em;
+  margin: 0 auto;
+  max-width: 800px;
+}
+code,
+pre,
+blockquote {
+  padding: .2em;
+  background: rgba(0,0,0,.1);
+}
+code,
+pre {
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 .5em 0;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+[class*=float-] {
+  margin: 0 auto 1em auto;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  clear: both;
+}
+@media (min-width: 600px) {
+  h1 { font-size: 300%; }
+  h2 { font-size: 200%; }
+  h3 { font-size: 180%; }
+  h4 { font-size: 160%; }
+  h5 { font-size: 140%; }
+  h6 { font-size: 120%; }
+  [class*=float-] {
+    max-width: 40%;
+  }
+  .float-left {
+    float: left;
+    margin: 0 1em .5em 0;
+  }
+  .float-right {
+    float: right;
+    margin: 0 0 .5em 1em;
+  }
+}
+
+.boxAnimate {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  -webkit-animation-name: move; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused
+  animation-name: move;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+@keyframes move {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px; }
+  50%  {background-color:blue; left:200px; top:200px; }
+  75%  {background-color:green; left:0px; top:200px; }
+  100% {background-color:red; left:0px; top:0px; }
+}
+
+@keyframes moveRotate {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px; transform: rotate(90deg);}
+  50%  {background-color:blue; left:200px; top:200px; transform: rotate(180deg);}
+  75%  {background-color:green; left:0px; top:200px; transform: rotate(270deg)}
+  100% {background-color:red; left:0px; top:0px; transform: rotate(360deg);}
+}
