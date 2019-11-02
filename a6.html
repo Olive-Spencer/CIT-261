@@ -52,9 +52,12 @@ function createButton()
     
     function removeLast()
     {
+        if(ol.childNodes[number] != null)
+            [
         number--;
         
         document.getElementById("ol").removeChild(ol.childNodes[number]);
+        ]
         
         
     }
