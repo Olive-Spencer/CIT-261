@@ -3,10 +3,109 @@
 <head>
 <link rel="stylesheet" type="text/css" href="main.css">
 </head>
+<script>
+var number = 0;
+
+function createButton()
+    {
+        if (document.getElementById("create") == undefined){  
+        var button = document.createElement("BUTTON");
+        button.innerHTML= "Create List";
+        button.onclick=function () {createList()};
+        document.body.appendChild(button);
+        var button = document.createElement("BUTTON");
+        button.setAttribute("id", "create");
+        var button2 = document.createElement("BUTTON");
+        var button3 = document.createElement("BUTTON");
+        var button4 = document.createElement("BUTTON");
+        var button5 = document.createElement("BUTTON");
+        button.innerHTML= "Add new item to List"
+        button.onclick=function () {addItem()};
+        document.body.appendChild(button);
+        button2.innerHTML= "Remove LAST item";
+        button2.onclick= function() {removeLast()};
+        document.body.appendChild(button2);
+        button3.innerHTML= "Remove FIRST item";
+        button3.onclick= function() {removeFirst()};
+        document.body.appendChild(button3);
+        button4.innerHTML= "Add item to middle"
+        button4.onclick=function () {addMiddle()};
+        document.body.appendChild(button4);
+        button5.innerHTML= "Delete list"
+        button5.onclick=function () {deleteList()};
+        document.body.appendChild(button5);
+        }
+    }
+    
+    function addItem()
+    {
+        
+        var li = document.createElement("LI");
+        number++;
+        var item = document.createTextNode("item " + number);
+        
+        li.appendChild(item);
+        document.getElementById("ol").appendChild(li);
+        
+        
+    }
+    
+    function removeLast()
+    {
+        number--;
+        
+        document.getElementById("ol").removeChild(ol.childNodes[number]);
+        
+        
+    }
+    
+    function removeFirst()
+    {
+        document.getElementById("ol").removeChild(ol.childNodes[0]);
+        number--;
+        
+    }
+    
+    function addMiddle()
+    {
+        var middle = ~~(number / 2);
+        var li = document.createElement("lI");
+        var text = document.createTextNode("middle");
+        li.appendChild(text);
+        document.getElementById("ol").insertBefore(li, ol.childNodes[middle]);
+        number++;
+    }
+    
+    function deleteList()
+    {
+        document.getElementById("ol").remove();
+        number= 0;
+    }
+    
+    function createList()
+    {
+        if (document.getElementById("ol") == undefined){
+        var ol = document.createElement("OL");
+        var li = document.createElement("LI");
+        var text = document.createTextNode("First item added");
+        
+        
+        li.appendChild(text);
+        ol.appendChild(li);
+        document.body.appendChild(ol);
+        ol.setAttribute("id", "ol");
+        number++;
+        }
+        
+    }
+    
+</script>
 <body>
 
 <h1>DOM Manipulation Using createElement, appendChild, insertBefore, removeChild, etc.</h1>
-<h2>Fall 2019</h2>
+<h2><button onclick="createButton()">Try it</button></h2>
+    
+
 
 
 

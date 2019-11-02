@@ -2,11 +2,72 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
+<script>
+    function changeBackground()
+    {
+        var color = document.getElementById("backgroundColor").value;
+        document.getElementById("body").style.backgroundColor = color;
+        
+    }
+    
+    function changeFontColor()
+    {
+        var color = document.getElementById("fontColor").value;
+        document.getElementById("header").style.color = color;
+        
+        
+    }
 
-<h1>Manipulating CSS Class Properties Using JavaScript</h1>
+    function changeFontSize(val)
+    {
+        document.getElementById("header").style.fontSize = val + "%";
+        document.getElementById("valUpdate").innerHTML="Current Value: " + val + "%";
+        
+    }
+    
+    function changeFont(font)
+    {
+        document.getElementById("header").style.fontFamily = font;
+    }
+    
+    function changePadding(padding)
+    {
+         document.getElementById("body").style.padding = padding + "em";
+        document.getElementById("fontValue").innerHTML="Current Value: " + padding + "em";
+    }
+    
+    
+    
+    </script>
+</head>
+<body id="body">
+
+<h1 id="header">Manipulating CSS Class Properties Using JavaScript</h1>
 <h2></h2>
+<input type="color" id="backgroundColor" value="#ff0000">
+<input type="button" value="Change Background Color" onclick="changeBackground()"><br><br>
+    
+<input type="color" id="fontColor" value="#ff0000">
+<input type="button" value="Change Heading Font Color" onclick="changeFontColor()"><br><br>
+
+Slide to change font size:<br>
+<div id="valUpdate">Current Value: 300%</div>
+<input type="range" id="fontSize" min="100" max="500" step ="100" onchange="changeFontSize(this.value);"><br><br>
+
+Change font:
+<form>
+  <input type="radio" name="font" value="Geneva" onclick="changeFont(this.value);" checked> Geneva <br>
+  <input type="radio" name="font" value="Tahoma" onclick="changeFont(this.value);"> Tahoma<br>
+  <input type="radio" name="font" value="Helvetica" onclick="changeFont(this.value);"> Helvetica
+</form><br><br>
+Slide to change body padding (in em):    
+<div id="fontValue">Current Value: .5em</div>
+<input type="range" id="fontSize" min="0" max="15" step ="1" onchange="changePadding(this.value);"><br><br>
+
+
+
+
+
 
 
 
