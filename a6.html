@@ -39,50 +39,56 @@ function createButton()
     
     function addItem()
     {
-        
+        if (document.getElementById("ol") != undefined){
         var li = document.createElement("LI");
         number++;
         var item = document.createTextNode("item " + number);
         
         li.appendChild(item);
         document.getElementById("ol").appendChild(li);
-        
+        }
         
     }
     
     function removeLast()
     {
-        if(ol.childNodes[number] != null)
-            [
+        if(document.getElementById("ol") != undefined && ol.childNodes[number - 1] != null)
+            {
         number--;
         
         document.getElementById("ol").removeChild(ol.childNodes[number]);
-        ]
+    }
         
         
     }
     
     function removeFirst()
     {
+        if (document.getElementById("ol") != undefined && ol.childNodes[0] != null){
         document.getElementById("ol").removeChild(ol.childNodes[0]);
         number--;
+        }
         
     }
     
     function addMiddle()
     {
+        if (document.getElementById("ol") != undefined){
         var middle = ~~(number / 2);
         var li = document.createElement("lI");
         var text = document.createTextNode("middle");
         li.appendChild(text);
         document.getElementById("ol").insertBefore(li, ol.childNodes[middle]);
         number++;
+        }
     }
     
     function deleteList()
     {
+        if (document.getElementById("ol") != undefined){
         document.getElementById("ol").remove();
         number= 0;
+        }
     }
     
     function createList()
