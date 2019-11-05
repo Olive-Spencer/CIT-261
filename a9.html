@@ -1,12 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="a9.css">
+<script>
+function onLoad(){
+    document.getElementById('load').innerHTML="this page has been loaded!"
+}
+function touchStart(){
+    document.getElementById('touch').innerHTML="This item has been touched!"
+}
+function onChange(){
+    document.getElementById('change').innerHTML="This item has been changed!";
+}
+function onClick(){
+    document.getElementById("click").value="clicked";
+}
+function onPress(){
+    window.location.reload(true);
+    
+}
+function mouseOver(){
+    
+document.getElementById("transition").addEventListener("webkitTransitionEnd", transition);
+document.getElementById("transition").addEventListener("transitionend", transition);
 
+}
+
+function transition(){
+    document.getElementById("transitionEnd").innerHTML="The Transition Ended";
+}
+function mouseOut(){
+    document.getElementById("box").style.animationPlayState= "running";
+    document.getElementById("box").addEventListener("webkitAnimationEnd", boxEnd);
+    document.getElementById("box").addEventListener("animationend", boxEnd);
+}
+function boxEnd(){
+    document.getElementById("end").innerHTML="Animation has Ended."
+}    
+    
+    
+</script>
+</head>
+
+<body onload="onLoad()">
 <h1>Standard JavaScript Events Including those for Mobile Devices ( Ex. onTouchBegin, onLoad, etc.) and Animation and Transition Events</h1>
-<h2></h2>
+<h2>On load</h2>
+<p id="load"></p>
+<h2>ontouchstart</h2>
+<p ontouchstart="touchStart()" id=touch>Touch Here!</p>
+<h2>On Change</h2>
+Click and slide to change:    
+<input type="range" min="0" max="10" step ="1" onchange="onChange()">
+<p id="change">The item has not been changed</p>
+<h2>On Click</h2>
+<input type="button" onclick="onClick()" value="Not Clicked" id="click">
+<h2>Transition, mouse over and transition end</h2>
+<div id="transition" onmouseover="mouseOver()"></div>
+<p id="transitionEnd"></p>
+<h2>Animation, mouse exit, animation end</h2>
+<div id="box" onmouseout="mouseOut()"></div>
+<p id="end"></p>    
+<h2>On Key Press</h2>
+<p>Type a letter inside the text box to reset the page</p>
+<input type="text" onkeypress="onPress()">
+
 
 
 
