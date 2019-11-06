@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="a11.css">
+</head>
+<script>
+
+function delay(){
+    var value = document.getElementById('delay').value;
+
+    if (value == "Add Delay")
+        {
+            document.getElementById('transition').style.transitionDelay = "1s";
+            document.getElementById('delay').value = "Remove Delay";
+        }
+    else 
+        {
+            document.getElementById('transition').style.transitionDelay = "0s";
+            document.getElementById('delay').value = "Add Delay";
+        }
+}
+function duration(){
+    var value = document.getElementById('duration').value;
+
+    if (value == "Increase Duration")
+    {
+        document.getElementById('transition').style.transitionDuration = "4s";
+        document.getElementById('duration').value = "Decrease Duration";
+    }
+    else
+    {
+        document.getElementById('transition').style.transitionDuration = "2s";
+        document.getElementById('duration').value = "Increase Duration";
+    }
+}
+function ease(){
+        var value = document.getElementById('ease').value;
+
+    if (value == "Ease In")
+    {
+        document.getElementById('transition').style.transitionTimingFunction = "ease-in";
+        document.getElementById('ease').value = "Linear";
+    }
+    else
+    {
+        document.getElementById('transition').style.transitionTimingFunction = "linear";
+        document.getElementById('ease').value = "Ease In";
+    }
+}
+</script>
+<body>
+
+<h1>CSS3 Transitions</h1>
+<h2>Transition is activated by hovering over it. Use the buttons to alter the transitions properties.</h2>
+
+<input type="button" value="Add Delay" id="delay" onclick="delay()">
+<input type="button" value="Increase Duration" id="duration" onclick="duration()">
+<input type="button" value="Ease In" id="ease" onclick="ease()"><br><br>
+<div id="transition"></div>
+</body>
+<html>
+

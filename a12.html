@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="a12.css">
+</head>
+<script>
+var next1 = 0;
+
+function next(){
+    
+    switch (next1){
+    
+        case 0:
+            document.getElementById('transform').className = 'rotate';
+            document.getElementById('transform').innerHTML = 'Rotated';
+            next1++;
+            break;
+        case 1:
+            document.getElementById('transform').className = 'scale';
+            document.getElementById('transform').innerHTML = 'Scale Increased';
+            next1++;
+            break;
+        case 2:
+            document.getElementById('transform').className = 'scalex';
+            document.getElementById('transform').innerHTML = 'Scale Just X Axis';
+            next1++;
+            break;
+        case 3:
+            document.getElementById('transform').className = 'scaley';
+            document.getElementById('transform').innerHTML = 'Scale Just Y Axis';
+            next1++;
+            break;
+        case 4:
+            document.getElementById('transform').className = 'skewx';
+            document.getElementById('transform').innerHTML = 'Skew Just X Axis 45 Degrees';
+            next1++;
+            break;
+        case 5:
+            document.getElementById('transform').className = 'skewy';
+            document.getElementById('transform').innerHTML = 'Skew Just y axis 20 Degrees';
+            next1++;
+            break;
+        default:
+            next1 = 0;
+            document.getElementById('transform').className = 'normal';
+            document.getElementById('transform').innerHTML = 'Normal';
+    }
+    
+    
+}
+</script>
+<body>
+
+<h1>CSS3 Transform</h1>
+<h2>Press the button multiple times to go through the different types of transforms.</h2>
+
+<input type="button" value="next" onclick="next()">
+<br><br><br><br><br><br>
+
+<div id="transform" class="normal">Normal</div>
+</body>
+<html>

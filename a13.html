@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="a13.css">
+</head>
+<script>
+function standard(){
+    document.getElementById('keyframes').className="standard";
+}
+function delay(){
+    document.getElementById('delay').className="delay";
+}
+function negDelay(){
+    document.getElementById('negdelay').className="negdelay";
+} 
+function threeTimes(){
+    document.getElementById('threetimes').className="threetimes";
+}
+function forwardBack(){
+    document.getElementById('forwardback').className="forwardback";
+}
+</script>
+<body>
+
+<h1>CSS Animation</h1>
+<h2>Press Each button to start the animations.</h2>
+
+    
+<input type="button" value="Start" onclick="standard()">
+<br>
+
+<div id="keyframes" class="none">Standard</div><br><br>
+
+<input type="button" value="Start" onclick="delay()">
+<br>
+
+<div id="delay" class="none">Two Second Delay</div><br><br>
+
+<input type="button" value="Start" onclick="negDelay()">
+<br>
+
+<div id="negdelay" class="none">-2 Second Delay</div><br><br>
+
+<input type="button" value="Start" onclick="threeTimes()">
+<br>
+
+<div id="threetimes" class="none">3 Iterations</div><br><br>
+
+<input type="button" value="Start" onclick="forwardBack()">
+<br>
+
+<div id="forwardback" class="none">Forward Once Reverse Once</div><br><br>
+
+
+
+</body>
+<html>
