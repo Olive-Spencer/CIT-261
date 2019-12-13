@@ -1,0 +1,59 @@
+body {background-color: #003366;
+       ; 
+        font-family:fantasy;
+        }
+h1 {text-align: center;
+    font-size: 54pt;
+    color:azure}
+.question {
+  border-radius: 25px;
+  border: 2px solid black;
+  padding: 20px; 
+  width: 75%;
+  height: 100px;
+  margin: auto;
+  background-color: azure;
+  font-size: 32pt;
+text-align: center;
+}
+.answer {
+  transition: background-color .5s ease;
+  border-radius: 25px;
+  border: 2px solid black;
+  padding: 20px 0; 
+  width: 60%;
+  height: 30px;
+  margin-top:5px;
+    font-size: 24pt;
+
+  cursor: pointer;
+  background-color: azure;
+  text-align: center;
+  margin-left: 20%;
+  margin-right:20%;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-name: none;
+  animation-play-state: paused;
+  
+}
+
+.answer:hover {
+    background-color:beige;
+}
+
+@keyframes correct {
+    0% {background-color:azure;}
+    25%{background-color:green;}
+    50% {background-color:green;}
+    100%{background-color:azure;}
+    
+}
+@keyframes incorrect {
+    0% {background-color:azure;}
+    25%{background-color:red;}
+    50% {background-color:red;}
+    100%{background-color:azure;}
+    
+}
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="project.css">
+
+
+
+<script>
+    
+var jsonP;
+var score = 0;
+function loadMe(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        jsonP = JSON.parse(xhttp.responseText);
+        
+       
+       
+  console.log(jsonP.results[0].question);
+    var x = Math.floor((Math.random() * 4)+1);
+    console.log(x);
+    document.getElementById("q1").innerHTML = jsonP.results[0].question;
+    
+    switch (x) {
+        case 1: 
+            document.getElementById("a1").innerHTML = jsonP.results[0].correct_answer;
+            document.getElementById("a2").innerHTML = jsonP.results[0].incorrect_answers[0];
+            document.getElementById("a3").innerHTML = jsonP.results[0].incorrect_answers[1];
+            document.getElementById("a4").innerHTML = jsonP.results[0].incorrect_answers[2];
+        break;
+        case 2:
+            document.getElementById("a2").innerHTML = jsonP.results[0].correct_answer;
+            document.getElementById("a1").innerHTML = jsonP.results[0].incorrect_answers[0];
+            document.getElementById("a3").innerHTML = jsonP.results[0].incorrect_answers[1];
+            document.getElementById("a4").innerHTML = jsonP.results[0].incorrect_answers[2];
+        break;
+        case 3:
+            document.getElementById("a3").innerHTML = jsonP.results[0].correct_answer;
+            document.getElementById("a2").innerHTML = jsonP.results[0].incorrect_answers[0];
+            document.getElementById("a1").innerHTML = jsonP.results[0].incorrect_answers[1];
+            document.getElementById("a4").innerHTML = jsonP.results[0].incorrect_answers[2];
+        break;
+        case 4: 
+            document.getElementById("a4").innerHTML = jsonP.results[0].correct_answer;
+            document.getElementById("a2").innerHTML = jsonP.results[0].incorrect_answers[0];
+            document.getElementById("a3").innerHTML = jsonP.results[0].incorrect_answers[1];
+            document.getElementById("a1").innerHTML = jsonP.results[0].incorrect_answers[2];
+        break;
+    }
+    
+
+        
+        
+    }
+  };
+  xhttp.open("GET", "https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple");
+  xhttp.send();
+}
+      
+
+function a1(){
+    var ids = "a1";
+ checkAns(ids);
+}
+function a2(){
+   var ids = "a2";
+ checkAns(ids);
+}
+function a3(){
+   var ids = "a3";
+ checkAns(ids);
+}
+function a4(){
+ 
+ var ids = "a4";
+ checkAns(ids);
+
+       
+   
+   
+   
+}
+
+function checkAns(ids){
+       var ans = document.getElementById(ids).innerHTML
+       if (ans == jsonP.results[0].correct_answer){
+       score += 100;
+       
+       document.getElementById(ids).style.animationName = "correct";
+       document.getElementById(ids).style.animationPlayState="running";
+       document.getElementById(ids).addEventListener("animationend", function(){
+           document.getElementById(ids).style.animationName = "none"; document.getElementById(ids).style.animationPlayState="paused";
+            
+       }, false);
+           
+       
+       
+   }else{
+       score += -100;
+       document.getElementById(ids).style.animationName = "incorrect";
+       document.getElementById(ids).style.animationPlayState="running";
+       document.getElementById(ids).addEventListener("animationend", function(){
+           document.getElementById(ids).style.animationName = "none"; document.getElementById(ids).style.animationPlayState="paused";
+            
+       }, false);
+           
+}
+    document.getElementById("score").innerHTML = "Score: " + score;
+    
+    
+    loadMe();
+    
+
+}
+
+
+    
+</script>
+    
+</head>
+<body onload="loadMe()">
+<h1>Trivia Game</h1>
+
+<div class="question" id="q1"></div>
+<div class="answer" id="a1" onclick= "a1()" ></div>
+<div class="answer" id="a2" onclick= "a2()"></div>
+<div class="answer" id="a3" onclick= "a3()"></div>
+<div class="answer" id="a4" onclick= "a4()"></div>
+<h1 id="score">Score : 0</h1>
+
+
+ 
+    
+    
+
+    
+
+</body>
+<html>
