@@ -5,10 +5,44 @@
 
 
 
+
+    
+</head>
+<body onload="loadMe(), loadData()" onbeforeunload="save()">
+    <div class=titleDiv><h1 class="title">Trivia Game</h1><h2 class="score" id="score">Score: 0 - Helps: 3</h2></div>
+
+<div class="question" id="q1"><span class="qT" id="que"></span><br><span class = "dont">Don't copy the text and search google...</span></div>
+<div class="answer" id="a1" onclick= "a1()" ></div>
+<div class="answer" id="a2" onclick= "a2()"></div>
+<div class="answer" id="a3" onclick= "a3()"></div>
+<div class="answer" id="a4" onclick= "a4()"></div>
+<div class="help" id="help" onclick="helps()">Help: 50/50</div>
+
+ 
+    
+    
+
+    
 <script>
+
+ 
     
 var jsonP;
-var score = 0;
+
+var score;
+var help;
+
+function loadData(){
+    var load = JSON.parse(localStorage.getItem("gameinfo"));
+    
+    if (load == null){
+        
+    }else{
+        score = load.score;
+        help = load.help;
+    }
+}   
+    
 function loadMe(){
 var xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
@@ -20,7 +54,8 @@ var xhttp = new XMLHttpRequest();
   console.log(jsonP.results[0].question);
     var x = Math.floor((Math.random() * 4)+1);
     console.log(x);
-    document.getElementById("q1").innerHTML = jsonP.results[0].question;
+    document.getElementById("que").innerHTML = jsonP.results[0].question;
+    document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;    
     
     switch (x) {
         case 1: 
@@ -49,6 +84,7 @@ var xhttp = new XMLHttpRequest();
         break;
     }
     
+    
 
         
         
@@ -57,6 +93,7 @@ var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "https://opentdb.com/api.php?amount=1&category=9&difficulty=medium&type=multiple");
   xhttp.send();
 }
+
       
 
 function a1(){
@@ -82,15 +119,16 @@ function a4(){
    
 }
 
+
 function checkAns(ids){
        var ans = document.getElementById(ids).innerHTML
        if (ans == jsonP.results[0].correct_answer){
        score += 100;
        
        document.getElementById(ids).style.animationName = "correct";
-       document.getElementById(ids).style.animationPlayState="running";
+       
        document.getElementById(ids).addEventListener("animationend", function(){
-           document.getElementById(ids).style.animationName = "none"; document.getElementById(ids).style.animationPlayState="paused";
+           document.getElementById(ids).style.animationName = "none"; 
             
        }, false);
            
@@ -99,42 +137,136 @@ function checkAns(ids){
    }else{
        score += -100;
        document.getElementById(ids).style.animationName = "incorrect";
-       document.getElementById(ids).style.animationPlayState="running";
+       
        document.getElementById(ids).addEventListener("animationend", function(){
-           document.getElementById(ids).style.animationName = "none"; document.getElementById(ids).style.animationPlayState="paused";
+           document.getElementById(ids).style.animationName = "none"; 
             
        }, false);
            
 }
-    document.getElementById("score").innerHTML = "Score: " + score;
+
     
+    setTimeout(flipOver, 1000)
+    setTimeout(loadMe, 1000);
     
-    loadMe();
     
 
 }
 
+function helps(){
+        
+        var x; 
+        var answer;
+        var random = Math.random();
+         
+        if (document.getElementById("a1").innerHTML == " " || document.getElementById("a2").innerHTML == " " || document.getElementById("a3").innerHTML == " " || document.getElementById("a4").innerHTML == " " || help <= 0 ){
+            document.getElementById("help").innerHTML = "Already Used";
+            setTimeout(function(){document.getElementById("help").innerHTML = "Help : 50/50";
+                       }
+                       ,1000)
+        }
+            
+        else{
+            help += -1;
+            document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;
+        for(x=1; x<=4; x++){
+            
+            var ans = "a" + x;
+            
+            
+            if (document.getElementById(ans).innerHTML == jsonP.results[0].correct_answer){
+               answer = x; 
+            }
+            
+            switch(answer){
+            
+                case 1:
+                    if (random < .5){
+                        document.getElementById("a2").innerHTML = " ";
+                        document.getElementById("a3").innerHTML = " ";
+                    } else {
+                        document.getElementById("a2").innerHTML = " ";
+                        document.getElementById("a4").innerHTML = " ";
+                    }
+                    break;
+                case 2:
+                    if (random < .5){
+                        document.getElementById("a1").innerHTML = " ";
+                        document.getElementById("a3").innerHTML = " ";
+                    } else {
+                        document.getElementById("a3").innerHTML = " ";
+                        document.getElementById("a4").innerHTML = " ";
+                    }
+                    break;
+                case 3:
+                    if (random < .5){
+                        document.getElementById("a2").innerHTML = " ";
+                        document.getElementById("a1").innerHTML = " ";
+                    } else {
+                        document.getElementById("a2").innerHTML = " ";
+                        document.getElementById("a4").innerHTML = " ";
+                    }
+                    break;
+                case 4:
+                    if (random < .5){
+                        document.getElementById("a2").innerHTML = " ";
+                        document.getElementById("a3").innerHTML = " ";
+                    } else {
+                        document.getElementById("a3").innerHTML = " ";
+                        document.getElementById("a1").innerHTML = " ";
+                    }
+                    break;
+            
+        }
+        }
+        }
+}
+
+function flipOver(){
+    
+    
+   
+   document.getElementById("a1").style.animationDuration="2s";
+    
+   document.getElementById("a2").style.animationDuration="2s";
+    
+   document.getElementById("a3").style.animationDuration="2s";
+    document.getElementById("a4").style.animationDuration="2s";
+    document.getElementById("q1").style.animationName="flip";
+    document.getElementById("a1").style.animationName="flip";
+    document.getElementById("a2").style.animationName="flip";
+    document.getElementById("a3").style.animationName="flip";
+    document.getElementById("a4").style.animationName="flip";
+    
+    
+    document.getElementById("q1").addEventListener("animationend", function(){
+        
+    document.getElementById("a1").style.animationDuration="1s";
+    
+   document.getElementById("a2").style.animationDuration="1s";
+    
+   document.getElementById("a3").style.animationDuration="1s";
+    document.getElementById("a4").style.animationDuration="1s";
+        document.getElementById("q1").style.animationName="none";
+    document.getElementById("a1").style.animationName="none";
+    document.getElementById("a2").style.animationName="none";
+    document.getElementById("a3").style.animationName="none";
+    document.getElementById("a4").style.animationName="none";
+        
+    })
+}
+function save(){
+    
+        
+        var array = { score:score, help:help};
+        localStorage.setItem("gameinfo", JSON.stringify(array));
+        
+}
+    
+
+
 
     
 </script>
-    
-</head>
-<body onload="loadMe()">
-<h1 class="title">Trivia Game</h1>
-
-<div class="question" id="q1"></div>
-<div class="answer" id="a1" onclick= "a1()" ></div>
-<div class="answer" id="a2" onclick= "a2()"></div>
-<div class="answer" id="a3" onclick= "a3()"></div>
-<div class="answer" id="a4" onclick= "a4()"></div>
-<h1 class="score" id="score">Score : 0</h1>
-
-
- 
-    
-    
-
-    
-
 </body>
 <html>
