@@ -1,3 +1,7 @@
+/* ***************************************************************************
+ * styles
+ * **************************************************************************/
+
 body {background-color: #003366;
        ; 
         font-family:optima;
@@ -8,10 +12,7 @@ h1, h2 {
 }
 .titleDiv{
     border: 2px solid black;
-    
-    
     min-height: 20px;
-    
     background-color: azure;
     margin:auto;
     margin-bottom: 10px;
@@ -69,8 +70,7 @@ h1, h2 {
   width: 60%;
   min-height: 20px;
   margin-top:10px;
-    font-size: 150%;
-
+  font-size: 150%;
   cursor: pointer;
   background-color: azure;
   text-align: center;
@@ -83,14 +83,13 @@ h1, h2 {
   
 }
 .help {
-    border-radius: 25px;
+  border-radius: 25px;
   border: 2px solid black;
   padding: 20px 0; 
   width: 20%;
   min-height: 30px;
   margin-top: 15px;
-    font-size: 150%;
-
+  font-size: 150%;
   cursor: pointer;
   background-color: azure;
   text-align: center; 
@@ -98,10 +97,11 @@ h1, h2 {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   
-    
-  
 }
 
+/* ***************************************************************************
+ * transitions
+ * **************************************************************************/
 
 
 .answer:hover {
@@ -125,7 +125,9 @@ h1, h2 {
 }
 
 
-
+/* ***************************************************************************
+ * Animations and transforms
+ * **************************************************************************/
 
 
 @keyframes correct {
@@ -153,6 +155,6 @@ h1, h2 {
 
 @keyframes flip {
     0% {}
-    100% {transform: rotateY(-180deg);}
+    100% {transform: rotateY(-360deg);}
 }
 

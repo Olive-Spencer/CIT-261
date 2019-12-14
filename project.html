@@ -8,6 +8,10 @@
 
     
 </head>
+
+<!--* ***************************************************************************
+ * HTML. Body on load calls two functions and one function on unload.
+ * **************************************************************************-->    
 <body onload="loadData(), loadMe()" onbeforeunload="save()">
     <div class=titleDiv onclick="reset()"><h1 class="title">Trivia Game</h1><h2 class="score" id="score"></h2><h2 class = resetText>Click here to reset score/helps.</h2></div>
 
@@ -25,13 +29,18 @@
     
 <script>
 
- 
+ /* ***************************************************************************
+ * Global variables
+ * **************************************************************************/
     
 var jsonP;
-
 var score;
 var help;
 var answer;
+
+/* ***************************************************************************
+ * function to load local storage (this functions runs on page load)
+ * **************************************************************************/
 
 function loadData(){
     var load = JSON.parse(localStorage.getItem("gameinfo"));
@@ -43,7 +52,11 @@ function loadData(){
         score = load.score;
         help = load.help;
     }
-}   
+} 
+
+/* ***************************************************************************
+ * Function to aquire new question from opentdb API through XMLHttp and JSON
+ * **************************************************************************/
     
 function loadMe(){
 var xhttp = new XMLHttpRequest();
@@ -52,12 +65,16 @@ var xhttp = new XMLHttpRequest();
         jsonP = JSON.parse(xhttp.responseText);
         
        
-       
-  console.log(jsonP.results[0].question);
+    //for testing purposes   
+    console.log(jsonP.results[0].question);
+    
+/* ***************************************************************************
+ * chooses random location for the answer to go and stores location number to global variable answer.
+ * **************************************************************************/
     var x = Math.floor((Math.random() * 4)+1);
     console.log(x);
     document.getElementById("que").innerHTML = jsonP.results[0].question;
-    document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;    
+    document.getElementById("score").innerHTML = "Score: " + score + "  Helps: " + help;    
     answer = x;
     switch (x) {
         case 1: 
@@ -96,7 +113,9 @@ var xhttp = new XMLHttpRequest();
   xhttp.send();
 }
 
-      
+/* ***************************************************************************
+ * functions called on click. Create associative variable and pass it to checkAns
+ * **************************************************************************/      
 
 function a1(){
     var ids = "a1";
@@ -120,6 +139,11 @@ function a4(){
    
    
 }
+    
+/* ***************************************************************************
+ * function to check the answer and see if the answer they gave is correct or incorrect
+ * adds or subtracts 100 from score. Plays the proper animation.
+ * **************************************************************************/    
 
 
 function checkAns(ids){
@@ -147,7 +171,9 @@ function checkAns(ids){
            
 }
 
-    
+/* ***************************************************************************
+ * Timesout before calling these functions.
+ * **************************************************************************/    
     setTimeout(flipOver, 1000)
     setTimeout(loadMe, 1000);
     
@@ -155,6 +181,10 @@ function checkAns(ids){
 
 }
 
+/* ***************************************************************************
+ * this function randomly removes two of the wrong answers if they have helps left and it
+ * hasn't already been used this question.
+ * **************************************************************************/
 function helps(){
         
         var x; 
@@ -170,7 +200,7 @@ function helps(){
             
         else{
             help += -1;
-            document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;
+            document.getElementById("score").innerHTML = "Score: " + score + "  Helps: " + help;
        
             
             switch(answer){
@@ -215,6 +245,11 @@ function helps(){
         }
         }
         }
+    
+/* ***************************************************************************
+ * function changes the style "animationDuration" and "animationName" in order to
+ * have the questions spin 360 degrees after being answered.
+ * **************************************************************************/    
 
 
 function flipOver(){
@@ -250,6 +285,10 @@ function flipOver(){
         
     })
 }
+    
+/* ***************************************************************************
+ * saves the score and help to a local storage associative array. This is called before the page unloads.
+ * **************************************************************************/    
 function save(){
     
         
@@ -258,11 +297,14 @@ function save(){
         
 }
 
+/* ***************************************************************************
+ * onclick clears the localStorage and resets the variables.
+ * **************************************************************************/    
 function reset(){
     localStorage.clear();
     score = 0;
     help = 3;
-    document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;
+    document.getElementById("score").innerHTML = "Score: " + score + "  Helps: " + help;
 }
     
 
