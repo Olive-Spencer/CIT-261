@@ -37,7 +37,8 @@ function loadData(){
     var load = JSON.parse(localStorage.getItem("gameinfo"));
     
     if (load == null){
-        
+     score = 0;
+     help = 3;
     }else{
         score = load.score;
         help = load.help;
