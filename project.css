@@ -15,8 +15,9 @@ h1, h2 {
     background-color: azure;
     margin:auto;
     margin-bottom: 10px;
-    
+    text-align: center;
     transition: background-image .2s ease;
+    
     
 }
 .title {text-align: center;
@@ -24,6 +25,11 @@ h1, h2 {
     padding-bottom: 5px;
     
     }
+.resetText{
+    
+    color:red;
+    
+}
 
 .score {
     text-align: center;
@@ -124,14 +130,14 @@ h1, h2 {
 
 @keyframes correct {
     0% {background-color:azure;}
-    25%{background-color:green;}
+    25%{background-color:green;transform: scale(1.5,1.5)}
     50% {background-color:green;}
     100%{background-color:azure;}
     
 }
 @keyframes incorrect {
     0% {background-color:azure;}
-    25%{background-color:red;}
+    25%{background-color:red;transform: scale(.5,.5)}
     50% {background-color:red;}
     100%{background-color:azure;}
     

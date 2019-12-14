@@ -9,7 +9,7 @@
     
 </head>
 <body onload="loadMe(), loadData()" onbeforeunload="save()">
-    <div class=titleDiv><h1 class="title">Trivia Game</h1><h2 class="score" id="score">Score: 0 - Helps: 3</h2></div>
+    <div class=titleDiv onclick="reset()"><h1 class="title">Trivia Game</h1><h2 class="score" id="score"></h2><h2 class = resetText>Click here to reset score/helps.</h2></div>
 
 <div class="question" id="q1"><span class="qT" id="que"></span><br><span class = "dont">Don't copy the text and search google...</span></div>
 <div class="answer" id="a1" onclick= "a1()" ></div>
@@ -31,6 +31,7 @@ var jsonP;
 
 var score;
 var help;
+var answer;
 
 function loadData(){
     var load = JSON.parse(localStorage.getItem("gameinfo"));
@@ -56,7 +57,7 @@ var xhttp = new XMLHttpRequest();
     console.log(x);
     document.getElementById("que").innerHTML = jsonP.results[0].question;
     document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;    
-    
+    answer = x;
     switch (x) {
         case 1: 
             document.getElementById("a1").innerHTML = jsonP.results[0].correct_answer;
@@ -156,7 +157,7 @@ function checkAns(ids){
 function helps(){
         
         var x; 
-        var answer;
+        
         var random = Math.random();
          
         if (document.getElementById("a1").innerHTML == " " || document.getElementById("a2").innerHTML == " " || document.getElementById("a3").innerHTML == " " || document.getElementById("a4").innerHTML == " " || help <= 0 ){
@@ -169,14 +170,7 @@ function helps(){
         else{
             help += -1;
             document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;
-        for(x=1; x<=4; x++){
-            
-            var ans = "a" + x;
-            
-            
-            if (document.getElementById(ans).innerHTML == jsonP.results[0].correct_answer){
-               answer = x; 
-            }
+       
             
             switch(answer){
             
@@ -220,7 +214,7 @@ function helps(){
         }
         }
         }
-}
+
 
 function flipOver(){
     
@@ -247,7 +241,7 @@ function flipOver(){
     
    document.getElementById("a3").style.animationDuration="1s";
     document.getElementById("a4").style.animationDuration="1s";
-        document.getElementById("q1").style.animationName="none";
+    document.getElementById("q1").style.animationName="none";
     document.getElementById("a1").style.animationName="none";
     document.getElementById("a2").style.animationName="none";
     document.getElementById("a3").style.animationName="none";
@@ -261,6 +255,13 @@ function save(){
         var array = { score:score, help:help};
         localStorage.setItem("gameinfo", JSON.stringify(array));
         
+}
+
+function reset(){
+    localStorage.clear();
+    score = 0;
+    help = 3;
+    document.getElementById("score").innerHTML = "Score: " + score + " - Helps: " + help;
 }
     
 
